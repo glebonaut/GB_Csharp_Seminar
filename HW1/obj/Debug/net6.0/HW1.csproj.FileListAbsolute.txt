@@ -1,0 +1,15 @@
+S:\YandexDisk\GeekBrains\GB_Csharp_Seminar\HW1\bin\Debug\net6.0\HW1.exe
+S:\YandexDisk\GeekBrains\GB_Csharp_Seminar\HW1\bin\Debug\net6.0\HW1.deps.json
+S:\YandexDisk\GeekBrains\GB_Csharp_Seminar\HW1\bin\Debug\net6.0\HW1.runtimeconfig.json
+S:\YandexDisk\GeekBrains\GB_Csharp_Seminar\HW1\bin\Debug\net6.0\HW1.dll
+S:\YandexDisk\GeekBrains\GB_Csharp_Seminar\HW1\bin\Debug\net6.0\HW1.pdb
+S:\YandexDisk\GeekBrains\GB_Csharp_Seminar\HW1\obj\Debug\net6.0\HW1.csproj.AssemblyReference.cache
+S:\YandexDisk\GeekBrains\GB_Csharp_Seminar\HW1\obj\Debug\net6.0\HW1.GeneratedMSBuildEditorConfig.editorconfig
+S:\YandexDisk\GeekBrains\GB_Csharp_Seminar\HW1\obj\Debug\net6.0\HW1.AssemblyInfoInputs.cache
+S:\YandexDisk\GeekBrains\GB_Csharp_Seminar\HW1\obj\Debug\net6.0\HW1.AssemblyInfo.cs
+S:\YandexDisk\GeekBrains\GB_Csharp_Seminar\HW1\obj\Debug\net6.0\HW1.csproj.CoreCompileInputs.cache
+S:\YandexDisk\GeekBrains\GB_Csharp_Seminar\HW1\obj\Debug\net6.0\HW1.dll
+S:\YandexDisk\GeekBrains\GB_Csharp_Seminar\HW1\obj\Debug\net6.0\refint\HW1.dll
+S:\YandexDisk\GeekBrains\GB_Csharp_Seminar\HW1\obj\Debug\net6.0\HW1.pdb
+S:\YandexDisk\GeekBrains\GB_Csharp_Seminar\HW1\obj\Debug\net6.0\HW1.genruntimeconfig.cache
+S:\YandexDisk\GeekBrains\GB_Csharp_Seminar\HW1\obj\Debug\net6.0\ref\HW1.dll
