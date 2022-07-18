@@ -10,15 +10,19 @@ namespace HW1
 //Enter point for compiler
         static void Main()
         {
-            //Task number check
-            ModeCheck();
+            //Task number selection
+            //Previously ModeCheck()
+            ModeSelect(ModeRead());
         }
 
 //All the stuff is happening there
+    //Previous method for task selection
         static void ModeCheck()
         {
             string? mode; //Somehow without ? compiler returned warning CS8600
-            Console.Write("Enter Task number (1 2 3 4) or q to exit ");
+            Console.WriteLine("Seminar 1 tasks: 1 2 3 4");
+            Console.WriteLine("Seminar 2 tasks: 5 6 7");
+            Console.Write("Enter Task number or q to exit ");
             mode = Console.ReadLine();
             switch (mode){
                 case "1": 
@@ -36,6 +40,72 @@ namespace HW1
                 case "4":
                     Console.WriteLine("Task4. Row of even numbers 2..N");
                     Task4();
+                    break;
+                case "5":
+                    Console.WriteLine("Task5. Second digit of three-digit number");
+                    Task5();
+                    break;
+                case "6":
+                    Console.WriteLine("Task6. Third digit of an integer");
+                    Task6();
+                    break;
+                case "7":
+                    Console.WriteLine("Task7. Name of a weekday based on its' number");
+                    Task7();
+                    break;
+                case "q":
+                    break;
+                default: 
+                    Console.WriteLine("Invalid input");
+                    ModeCheck();
+                    break;            
+            }
+        }
+
+    //Method for reading user input for task selection
+        static string ModeRead()
+        {
+            string? mode; //Somehow without ? compiler returned warning CS8600
+            Console.WriteLine("");
+            Console.WriteLine("Seminar 1 tasks: 1 2 3 4");
+            Console.WriteLine("Seminar 2 tasks: 5 6 7");
+            Console.Write("Enter Task number or q to exit ");
+            mode = Console.ReadLine();
+            Console.WriteLine("");
+            return mode;
+        } 
+        
+    //Method for calling different tasks
+        static void ModeSelect(string mode)
+        {
+            switch (mode){
+                case "1": 
+                    Console.WriteLine("Task1. Maximum of two integers");
+                    Task1();
+                    break;
+                case "2":
+                    Console.WriteLine("Task2. Maximum of three integers");
+                    Task2();
+                    break;
+                case "3":
+                    Console.WriteLine("Task3. Integer parity check");
+                    Task3();
+                    break;
+                case "4":
+                    Console.WriteLine("Task4. Row of even numbers 2..N");
+                    Task4();
+                    break;
+                case "5":
+                    Console.WriteLine("Task5. Second digit of three-digit number");
+                    Task5();
+                    break;
+                case "6":
+                    Console.WriteLine("Task6. Third digit of an integer");
+                    Task6();
+                    break;
+                case "7":
+                    Console.WriteLine("Task7. Name of a weekday based on its' number");
+                    Task7();
                     break;
                 case "q":
                     break;
@@ -161,5 +231,109 @@ namespace HW1
             Console.WriteLine();
             ModeCheck();
         }
-    }    
+
+    //Task5. Second digit of-three digit number    
+        static void Task5()
+        {
+            string Msg = "Enter three-digit integer";
+            string taskID="5"; //Probably should add taskID as an attribute of struct or smth
+            int number = IntInputRequest(Msg, taskID); //Call a method to request integer input
+            if (number>1000||number<100) //Input exception handler
+            {
+                Console.WriteLine($"{number} isn't a three-digit number, try again");
+                ModeSelect(taskID);
+            }
+            string result=DigitExtractor(number, 2); //Call a method to extract second digit from number 
+            Console.WriteLine($"Answer: second digit of {number} is {result}"); //result output
+            ModeSelect(ModeRead()); //back to menu
+        }
+        
+    // Method to request integer input
+        static int IntInputRequest (string Msg, string taskID)
+        {
+            Console.Write($"{Msg} ");
+            int result = 0;
+            result = IntInputValidation(taskID);
+            return result;
+
+        }
+
+    // Method to get integer input and validate it
+        static int IntInputValidation (string taskID)
+       {
+            int result = 0;
+            try {
+                result=Convert.ToInt32(Console.ReadLine());
+                return result;   
+            }
+            catch(FormatException){
+                Console.WriteLine("Input isn't integer, try again");
+                ModeSelect(taskID);
+                return result; 
+                //If value is invalid, method returns 0 several times before finally ending
+            }
+       }
+    
+    //Method for extraction a digit from integer
+        static string DigitExtractor (int number, int rank)
+        {
+            //Exceptions handling
+            if (rank<1){return "N/A";};//Number contains at least one digit
+            if (number==0 && rank==1){return "0";};//First digit of 0
+            number=Math.Abs(number);
+            if (number<Math.Pow(10,rank-1)){return "N/A";};//There's no digit of this rank
+            
+            while (number>Math.Pow(10,rank)){number/=10;}
+            number%=10;
+            return Convert.ToString(number);
+        }
+
+    //Task6. Third digit of an integer. Slightly changed Task5    
+        static void Task6()
+        {
+            string Msg = "Enter an integer";
+            string taskID="6";
+            int number = IntInputRequest(Msg, taskID); 
+            string result=DigitExtractor(number, 3); 
+            Console.WriteLine($"Answer: third digit of {number} is {result}"); 
+            ModeSelect(ModeRead());
+        }
+
+    //Task7. Name of a weekday based on its' number    
+        static void Task7()
+        {
+            string Msg="Enter day number";
+            string taskID="7";
+            string[] DayNames = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+            int id = IntInputRequest(Msg, taskID);
+            if (id>0 && id<8)
+            {
+            Console.WriteLine($"Day number {id} is {DayNames[id-1]}");
+            }
+            else {Console.WriteLine($"There's no such thing as day {id}");};
+            ModeSelect(ModeRead());
+        }
+
+    // Method for displaying a placeholder for uncompleted tasks 
+        static void Placeholder(string taskID)
+        {
+            Console.WriteLine($"Task {taskID} is not ready yet");
+            ModeCheck();
+        }
+    /*
+    // Method for checking validity of an integer
+        static bool IntegerCheck (string input)
+        {
+            int test=0;
+            try {
+                test=Convert.ToInt32(input);
+                return true;
+            }
+            catch(FormatException){
+                return false;
+            }
+        }
+    */     
+    }
+     
 }

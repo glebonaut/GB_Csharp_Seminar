@@ -4,10 +4,10 @@
 * [Запись семинара 1](https://gb.ru/lessons/249151)
 * [Задание 1](https://gb.ru/lessons/249151/homework) 
 
-## 
-* [Лекция 1](https://gb.ru/lessons/249078)
-[Запись семинара 1](https://gb.ru/lessons/249151)
-[Задание 1](https://gb.ru/lessons/249151/homework) 
+## Семинар 2.
+* [Лекция 2](https://gb.ru/lessons/249079)
+* [Запись семинара 2](https://gb.ru/lessons/249152)
+* [Задание 2](https://gb.ru/lessons/249152/homework) 
 
 ## Новые материалы
 * `dotnet new console` -- команда запуска новой консоли в выбранной папке, создаёт файлы Filename.cs, Foldername.csproj и временные файлы, которые можно отфильтровать при помощи файла .gitignore 
@@ -64,5 +64,23 @@ namespace HW1_1
 * Объявление массива в С#
 ```C#
 int[] input = new int[3];
+```
+* Пропись вывода в терминал с переменными внутри текста
+```C#
+// Перед "" должен стоять $, переменная указывается в {}
+ConsoleWrtieLine($"Text {Variable} text");
+```
+* Инициализация рандомного числа
+```C#
+int number = new Random().Next(min,max);
+```
+* **Метод должен быть однозадачным и работать без выводов (если цель != "сделать вывод")**
+```C#
+// Инициализация метода
+type MethodName (type input, type input2)
+{
+    //stuff here
+    return value; //Если тип не void
+}
 ```
 * 
