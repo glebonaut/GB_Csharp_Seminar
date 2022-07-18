@@ -52,7 +52,7 @@ namespace HW1
             int a=0;
             int b=0;
 
-        //Two sections with try-catch convertion to deal with formating errors
+        //Two sections with try-catch Convert.ToInt32 to deal with formating errors
 
             Console.Write("Enter integer a: ");
             try { 
