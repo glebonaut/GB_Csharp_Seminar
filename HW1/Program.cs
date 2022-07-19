@@ -314,12 +314,45 @@ namespace HW1
             ModeSelect(ModeRead());
         }
 
+    //Task8. Five-digit integer palindrome check
+        static void Task8()
+        {
+            string taskID="8";
+            string Msg="Enter five digit number";
+            Placeholder(taskID);
+        }
+
+    //Task9. 3D distance between two dots
+        static void Task9()
+        {
+            string taskID="9";
+            string Msg="Enter input: ";
+            Placeholder(taskID);
+        }
+
+    //Task10. Row of i^3 in [1..N]
+        static void Task10()
+        {
+            string taskID="10";
+            string Msg="Enter input: ";
+            Placeholder(taskID);
+        }
+
+    //TaskTemplate. Template for task method
+        static void TaskTemplate()
+        {
+            string Msg="Enter input: ";
+            string taskID="Placeholder";
+            Placeholder(taskID);
+        }
+
     // Method for displaying a placeholder for uncompleted tasks 
         static void Placeholder(string taskID)
         {
             Console.WriteLine($"Task {taskID} is not ready yet");
             ModeCheck();
         }
+
     /*
     // Method for checking validity of an integer
         static bool IntegerCheck (string input)
