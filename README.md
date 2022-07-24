@@ -83,4 +83,9 @@ type MethodName (type input, type input2)
     return value; //Если тип не void
 }
 ```
-* 
+*  Действие для каждого элемента
+```C#
+foreach (int digit in inputArray){
+                    Console.Write(" " + digit + " ");
+                }
+```

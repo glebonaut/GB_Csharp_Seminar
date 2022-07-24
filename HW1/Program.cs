@@ -69,6 +69,7 @@ namespace HW1
             Console.WriteLine("");
             Console.WriteLine("Seminar 1 tasks: 1 2 3 4");
             Console.WriteLine("Seminar 2 tasks: 5 6 7");
+            Console.WriteLine("Seminar 3 tasks: 8 9 10");
             Console.Write("Enter Task number or q to exit ");
             mode = Console.ReadLine();
             Console.WriteLine("");
@@ -106,6 +107,18 @@ namespace HW1
                 case "7":
                     Console.WriteLine("Task7. Name of a weekday based on its' number");
                     Task7();
+                    break;
+                case "8":
+                    Console.WriteLine("Task8. Five-digit palindrome check");
+                    Task8();
+                    break;
+                case "9":
+                    Console.WriteLine("Task9. 3D distance between two dots");
+                    Task9();
+                    break;
+                case "10":
+                    Console.WriteLine("Task10. Row of i^3 in [1..N]");
+                    Task10();
                     break;
                 case "q":
                     break;
@@ -319,7 +332,54 @@ namespace HW1
         {
             string taskID="8";
             string Msg="Enter five digit number";
-            Placeholder(taskID);
+            int input=IntInputRequest(Msg,taskID);
+            int rank = RankCheck(input);
+
+            //Exception handling, yet, method works for integer of any length
+            if (rank!=5){
+                Console.WriteLine("Input isn't five-digit, yet...");
+            }
+                int[] inputArray = DigitArray(input, rank);
+                bool answer = IntArrayPalindromeCheck(inputArray);
+                Console.WriteLine($"Statement 'number {input} is a palindrome' is {answer}");
+                ModeSelect(ModeRead());
+        }
+    
+    //Method for integer rank checking 
+        static int RankCheck(int number)
+        {
+            int rank=1;
+            int tenPowered=10;
+            while (number>=tenPowered){
+                rank++;
+                tenPowered*=10;
+            }
+            return rank;
+        }
+
+    //Method for putting a digit into an array
+        static int [] DigitArray(int number, int rank)
+        {
+            int[] digitArray = new int[rank];
+            for (int i=rank; i>0; i--){
+                digitArray[i-1]=Convert.ToInt32(DigitExtractor(number, i));
+                number/=10;
+            }
+            return digitArray;
+        }
+
+    //Method for putting a digit into an array
+        static bool IntArrayPalindromeCheck(int [] array)
+        {
+            bool answer = true;
+            for (int i=0; i<array.Length/2; i++)
+            {
+                if(array[i]!=array[array.Length-1-i])
+                {
+                    answer=false;
+                }
+            }
+            return answer;
         }
 
     //Task9. 3D distance between two dots
