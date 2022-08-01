@@ -113,7 +113,7 @@ namespace HW1
                     Task8();
                     break;
                 case "9":
-                    Console.WriteLine("Task9. 3D distance between two dots");
+                    Console.WriteLine("Task9. 3D distance between two dots (vector length)");
                     Task9();
                     break;
                 case "10":
@@ -386,8 +386,36 @@ namespace HW1
         static void Task9()
         {
             string taskID="9";
-            string Msg="Enter input: ";
-            Placeholder(taskID);
+            string Msg="enter coordinates x y z ";
+            Console.Write("Point A. "+Msg);
+            int [] pointA = InputPoint();
+            Console.WriteLine("");
+            Console.Write("Point B. "+Msg);
+            int [] pointB = InputPoint();
+            double lengthAB = Math.Round(VectorLength(pointA, pointB), 1);
+            Console.WriteLine($"Length of vector AB is {lengthAB}");
+            ModeSelect(ModeRead());
+        }
+    
+        static int [] InputPoint()
+        {
+            char [] delimiterChars = {' ', ','};
+            string input = Console.ReadLine();
+            int [] output = {0 , 0 , 0};
+            try{output = input.Split(delimiterChars).Select(int.Parse).ToArray();}
+            catch(FormatException){Console.WriteLine("Invalid input, returned 0,0,0");}
+            return output;            
+        }
+
+        static double VectorLength(int[] pointA, int[] pointB)
+        {
+            double length=0;
+            for (int i=0; i<3; i++)
+            {
+                length+=Math.Pow(pointB[i]-pointA[i], 2);
+            }
+            length=Math.Pow(length, 0.5);
+            return length;
         }
 
     //Task10. Row of i^3 in [1..N]
@@ -395,7 +423,14 @@ namespace HW1
         {
             string taskID="10";
             string Msg="Enter input: ";
-            Placeholder(taskID);
+            int number = IntInputRequest(Msg, taskID);
+            for (int i=1; i<=number; i++)
+            {
+                double iCubed = Math.Pow(i, 3);
+                Console.Write($"{iCubed} ");
+            }
+            Console.WriteLine("");
+            ModeSelect(ModeRead());
         }
 
     //TaskTemplate. Template for task method
