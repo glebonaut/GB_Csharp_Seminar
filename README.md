@@ -9,6 +9,11 @@
 * [Запись семинара 2](https://gb.ru/lessons/249152)
 * [Задание 2](https://gb.ru/lessons/249152/homework) 
 
+## Семинар 3.
+* [Лекция 3](https://gb.ru/lessons/249080)
+* [Запись семинара 3](https://gb.ru/lessons/249152/homework)
+* [Задание 3](https://gb.ru/lessons/249153/homework) 
+
 ## Новые материалы
 * `dotnet new console` -- команда запуска новой консоли в выбранной папке, создаёт файлы Filename.cs, Foldername.csproj и временные файлы, которые можно отфильтровать при помощи файла .gitignore 
 [Инструкция по .gitignore](https://gbcdn.mrgcdn.ru/uploads/asset/3850834/attachment/f05a318ae735374e643d15e71d42214f.mp4)
@@ -89,3 +94,11 @@ foreach (int digit in inputArray){
                     Console.Write(" " + digit + " ");
                 }
 ```
+* Преобразование строки в массив чисел
+```C#
+char [] delimiterChars = {' ', ','};
+string input = Console.ReadLine();
+int [] output = input.Split(delimiterChars).Select(int.Parse).ToArray();
+```
+
+* 
