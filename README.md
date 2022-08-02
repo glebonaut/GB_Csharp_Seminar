@@ -11,8 +11,13 @@
 
 ## Семинар 3.
 * [Лекция 3](https://gb.ru/lessons/249080)
-* [Запись семинара 3](https://gb.ru/lessons/249152/homework)
+* [Запись семинара 3](https://gb.ru/lessons/249153)
 * [Задание 3](https://gb.ru/lessons/249153/homework) 
+
+## Семинар 4.
+* [Лекция 4](https://gb.ru/lessons/249081)
+* [Запись семинара 4](https://gb.ru/lessons/249154)
+* [Задание 4](https://gb.ru/lessons/249154/homework) 
 
 ## Новые материалы
 * `dotnet new console` -- команда запуска новой консоли в выбранной папке, создаёт файлы Filename.cs, Foldername.csproj и временные файлы, которые можно отфильтровать при помощи файла .gitignore 
@@ -100,5 +105,7 @@ char [] delimiterChars = {' ', ','};
 string input = Console.ReadLine();
 int [] output = input.Split(delimiterChars).Select(int.Parse).ToArray();
 ```
+
+* Метод можно вызывать прямо в выводе данных, в {}
 
 * 
