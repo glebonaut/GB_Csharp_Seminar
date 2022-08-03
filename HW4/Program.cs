@@ -27,7 +27,7 @@ namespace HW4
             string? mode; //Somehow without ? compiler returned warning CS8600
             Console.WriteLine("");
             Console.WriteLine("Seminar 4 tasks: 25 27 29");
-            Console.Write("Enter Task number or q to exit ");
+            Console.Write("Enter Task number, f to test a new feature or q to exit ");
             mode = Console.ReadLine();
             Console.WriteLine("");
             return mode;
@@ -49,6 +49,10 @@ namespace HW4
                     Console.WriteLine("Task29. Initialize and output 8-element array");
                     Task29();
                     break;
+                case "f":
+                    Console.WriteLine("New Feature");
+                    Feature();
+                    break;    
                 case "q":
                     break;
                 default: 
@@ -90,10 +94,10 @@ namespace HW4
             //Exceptions handling
             if (rank<1){return "N/A";};//Number contains at least one digit
             if (number==0 && rank==1){return "0";};//First digit of 0
-            number=Math.Abs(number);
-            if (number<Math.Pow(10,rank-1)){return "N/A";};//There's no digit of this rank
+            if (number<0){number*=-1;}; //instead of Math.Abs()
+            if (number<PowerAB(10,rank-1)){return "N/A";};//There's no digit of this rank
             
-            while (number>Math.Pow(10,rank)){number/=10;}
+            while (number>PowerAB(10,rank)){number/=10;}
             number%=10;
             return Convert.ToString(number);
         }
@@ -120,12 +124,80 @@ namespace HW4
             for (int i=0; i<N; i++)
                 {output[i]=0;}
             try
-                {output = input.Split(delimiterChars).Select(int.Parse).ToArray();}
+                {output=ParseIntArray(N, input);}
             catch(FormatException)
                 {Console.WriteLine("Invalid input, returned nulls");}
             catch(IndexOutOfRangeException)    
                 {Console.WriteLine("Invalid input, returned nulls");}
             return output;            
+        }
+
+    //Array of N int parsing method     
+        static int [] ParseIntArray(int N, string input)
+        {
+            int [] result  = new int [N];
+            string[] buffer = new string[N];
+            int i=0;
+            for (i=0; i<N; i++)
+            {
+                result[i]=0;
+                buffer[i]="0";
+            }
+            i=0;
+            bool numberDetected=false;
+            while (i<N && input.Length>0)
+            {
+                char c = input[0];
+                if (DetectInteger(c))
+                {
+                    if (numberDetected)
+                    {
+                        buffer[i]+=Convert.ToString(c);
+                    }
+                    else
+                    {
+                        buffer[i]=Convert.ToString(c);
+                        numberDetected=true;
+                    }
+                }
+                else
+                {
+                    if (numberDetected)
+                    {
+                        i++;
+                    }
+                    numberDetected=false;
+                }
+                input=input.Remove(0,1);
+            }
+            for (i=0; i<N; i++)
+            {
+                result[i]=Convert.ToInt32(buffer[i]);
+            }
+            return result;
+        }
+
+    //Comparing char to set of digits
+        static bool DetectInteger(char c)
+        {
+            char [] numbers = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+            for (int i=0; i<10; i++)
+            {
+                if (c==numbers[i]){return true;}
+            }
+            return false;
+        }
+
+    //Method for testing a new feature
+        static void Feature()
+        {
+            Console.Write("Enter N ");
+            int N = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Enter Array ");
+            string input=Console.ReadLine();
+            int [] array = ParseIntArray(N, input);
+            Console.WriteLine(WriteArrayPretty(array));
+            CallMenu();
         }
 
     //Powering method
