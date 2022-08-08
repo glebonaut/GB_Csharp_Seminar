@@ -62,11 +62,12 @@ namespace HW5
             }
         }
 
-
     //Task34. Quantity of even numbers in an array
         static void Task34()
         {
-            int [] input=RandomArrayGenerator(4,100,1000);
+            Console.WriteLine("Enter array length");
+            int [] arrayParameters=InputNNumbers(1); //Not memory-optimized, but "my time"-optimized
+            int [] input=RandomArrayGenerator(arrayParameters[0],100,1000);
             int answer=0;
             for (int i=0;i<input.Length;i++)
             {
@@ -80,9 +81,12 @@ namespace HW5
         }
 
     //Generate array of N random integers    
-
         static int [] RandomArrayGenerator (int arrayLength, int minValue, int maxValue)
         {
+            if(arrayLength<0)
+            {
+                arrayLength*=-1; //negative length filter
+            }
             Random rnd=new Random();
             int [] result=new int[arrayLength];
             for (int i=0;i<arrayLength;i++)
@@ -92,6 +96,7 @@ namespace HW5
             return result;
         }
     
+    //Nuff said
         static bool ParityCheck(int input)
         {
             bool result=false;
@@ -105,7 +110,7 @@ namespace HW5
     //Input requester for N numbers
         static int [] InputNNumbers(int N)
         {
-            char [] delimiterChars = {' ', ','};
+            //char [] delimiterChars = {' ', ','};
             Console.Write($"Enter {N} numbers ");
             string input = Console.ReadLine();
             int [] output = new int [N];
@@ -120,7 +125,8 @@ namespace HW5
             return output;            
         }
 
-    //Array of N int parsing method     
+    //Array of N int custom parsing method 
+    //Example: input "-1-2  d67- 9,35" output [-1, -2, 67, 9, 35]    
         static int [] ParseIntArray(int N, string input)
         {
             int [] result  = new int [N];
@@ -133,28 +139,47 @@ namespace HW5
             }
             i=0;
             bool numberDetected=false;
+            bool minusDetected=false;
             while (i<N && input.Length>0)
             {
                 char c = input[0];
-                if (DetectInteger(c))
+                if (c=='-')
                 {
-                    if (numberDetected)
+                   minusDetected=true;
+                   if(numberDetected)
+                   {
+                        i++; 
+                        numberDetected=false;
+                   } 
+                }
+                else
+                {   if (DetectNumber(c))
                     {
-                        buffer[i]+=Convert.ToString(c);
+                        if(minusDetected)
+                        {
+                            buffer[i]=Convert.ToString('-');
+                            numberDetected=true;
+                            minusDetected=false;
+                        }
+                        if (numberDetected)
+                        {
+                            buffer[i]+=Convert.ToString(c);
+                        }
+                        else
+                        {
+                            buffer[i]=Convert.ToString(c);
+                            numberDetected=true;
+                        }
                     }
                     else
                     {
-                        buffer[i]=Convert.ToString(c);
-                        numberDetected=true;
+                        if (numberDetected)
+                        {
+                            i++;
+                        }
+                        numberDetected=false;
+                        minusDetected=false;
                     }
-                }
-                else
-                {
-                    if (numberDetected)
-                    {
-                        i++;
-                    }
-                    numberDetected=false;
                 }
                 input=input.Remove(0,1);
             }
@@ -166,7 +191,7 @@ namespace HW5
         }
 
     //Comparing char to set of digits
-        static bool DetectInteger(char c)
+        static bool DetectNumber(char c)
         {
             char [] numbers = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
             for (int i=0; i<10; i++)
@@ -191,12 +216,15 @@ namespace HW5
     //Task36. Sum array elements with odd indexes
         static void Task36()
         {
-            int [] input = RandomArrayGenerator(4,-1000,1000);
+            Console.WriteLine("Enter array length, minimal value and maximal value of element");
+            int [] arrayParameters=InputNNumbers(3);
+            int [] input = RandomArrayGenerator(arrayParameters[0],arrayParameters[1],arrayParameters[2]);
             int answer=SumOfOddElements(input);
             Console.WriteLine($"Sum of elements with odd indexes in {WriteArrayPretty(input)} is {answer}");
             CallMenu(); 
         }
 
+    //Is this the nessesary depth of task decomposition? 
         static int SumOfOddElements(int [] input)
         {   
             int result=0;
@@ -222,6 +250,7 @@ namespace HW5
             CallMenu();
         }
 
+    //Do I get the method phylosophy right?
         static int SearchIndexOfMin (int [] input)
         {
             int result=0;
@@ -248,6 +277,7 @@ namespace HW5
             return result;
         }
 
+    //Method for formatted output of an array
         static string WriteArrayPretty(int [] array)
         {   
             string result="[";
