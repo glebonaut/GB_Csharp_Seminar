@@ -123,3 +123,10 @@ int [] output = input.Split(delimiterChars).Select(int.Parse).ToArray();
 Random rnd = new Random();
 double number=new rnd.Next(1,10) + new rnd.NextDouble();
 ```
+
+* Спецсимволы для форматирования строки
+```C#
+"\t" // collumn or tab
+"\r\n" // row
+"\n" // new paragraph 
+````
