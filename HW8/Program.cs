@@ -19,7 +19,7 @@
             Console.WriteLine($"{WriteArrayPretty(output)}");
             ShakerSortRows(output);
             Console.WriteLine($"{WriteArrayPretty(output)}");
-            ModeSelect(ModeRead());
+            CallMenu();
         }
 
     //Shaker sorting method for rows in a matrix
@@ -63,7 +63,7 @@
             int [,] input=RandomArrayGenerator(matrixDimensions, -10, 10);
             Console.WriteLine($"{WriteArrayPretty(input)}");
             Console.WriteLine($"Row {FindRowWithMinimalSum(input)} is the row with minimal sum of elements");
-            ModeSelect(ModeRead()); 
+            CallMenu(); 
         }
 
     //Method for searching the row in a matrix with minimal sum of elements
@@ -97,6 +97,7 @@
             Console.WriteLine($"\n{WriteArrayPretty(input1)}Multiplied by\n{WriteArrayPretty(input2)}is");
             int[,] output=MatrixMultiplication(input1,input2);
             Console.WriteLine($"{WriteArrayPretty(output)}");
+            CallMenu();
         }
 
     //Method for creating a matrix by multiplying of two input matrices
@@ -121,7 +122,8 @@
             CallMenu();
         }
 
-    //Generator of cubic matrix with unique elements
+    //Generator of cubic matrix with unique elements, 
+    //any dimensions could be set
         static int [,,] GenerateRandomCubicMatrix(int dimension)
         {
             List<int> elementsOfCubicMatrix=new List<int>();
@@ -170,8 +172,72 @@
             return input[i,j,k]+" ("+i+","+j+","+k+")";
         }
 
+    //Fill a 4x4 matrix in a spiral way"
         static void Task62()
-        {}
+        {
+            Console.WriteLine("Enter dimension of a matrix");
+            int[] matrixDimensions=InputNNumbers(2);
+            int[,] matrix=new int[matrixDimensions[0],matrixDimensions[1]];
+            SpiralMatrixInfill(matrix);
+            Console.WriteLine($"{WriteArrayPretty(matrix)}");
+            CallMenu();
+        }
+
+    //Works with any matrix dimensions
+        static void SpiralMatrixInfill(int [,] input)
+        {
+            int step = input.GetLength(0);
+            int [] point ={0,0};
+            //set borders for point to bump in
+            int [] border ={input.GetLength(1)-1,input.GetLength(0)-1,0,1}; 
+            int value=0;
+            int direction=0; //0-right, 1-down, 2-left, 3-up
+            int elements = input.GetLength(0)*input.GetLength(1);
+            while (value<elements)
+            {
+                input[point[0],point[1]]=value;
+                point=MoveCoordinates(point, direction);  
+                if(PointCollidedWithBorder(border,point,direction))
+                {
+                    if(direction>1) border[direction]++;
+                    else border[direction]--;
+                    direction++;//turn right
+                    if (direction>3)direction=0;//direction overflow handler
+                }
+                value++;
+            }
+        }
+
+        //tried new formatting of method initialization
+        static bool PointCollidedWithBorder(int[] border, int[] point, int direction) => point[(direction+1)%2]==border[direction];
+        /*{
+            //Console.WriteLine($"collision with {direction} on {border[direction]}");
+            return point[(direction+1)%2]==border[direction];                
+        }*/
+
+        //could make it as a void method, dunno why I didn't
+        static int[] MoveCoordinates (int[] coordinates, int direction)
+        {
+            int[] result =coordinates;
+            switch (direction)
+            {
+                case 0:
+                    result[1]++; //right, y+1
+                    break;
+                case 1:
+                    result[0]++; //down, x+1
+                    break;
+                case 2:
+                    result[1]--; //left, y-1 
+                    break;
+                case 3:
+                    result[0]--; //up, x-1
+                    break;
+                default:
+                    break;
+            }
+            return result;
+        }
 
 //SUPPORT METHODS FOR UI, INPUT REQUEST, PARSING, ETC.
 
@@ -370,25 +436,6 @@
                 {
                     result[i,j]=buffer[j];
                 }
-            }
-            return result;
-        }
-
-        static double [] MatrixCollumnAverage(int [,] input)
-        {
-            double [] result=new double[input.GetLength(1)];
-            for (int i=0;i<result.Length;i++)
-            {
-                result[i]=0.0;
-            }
-            for (int j=0;j<input.GetLength(1);j++)
-            {   
-                double sumOfCollumn = 0.0;
-                for (int i=0;i<input.GetLength(0);i++)
-                {
-                    sumOfCollumn+=input[i,j];
-                }
-                result[j]=Math.Round(sumOfCollumn/input.GetLength(0),1);
             }
             return result;
         }
