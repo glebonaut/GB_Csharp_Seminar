@@ -29,6 +29,21 @@
 * [Запись семинара 6](https://gb.ru/lessons/249156)
 * [Задание 6](https://gb.ru/lessons/249156/homework) 
 
+## Семинар 7.
+* [Лекция 7](https://gb.ru/lessons/249084)
+* [Запись семинара 7](https://gb.ru/lessons/249157)
+* [Задание 7](https://gb.ru/lessons/249157/homework) 
+
+## Семинар 8.
+* [Лекция 8](https://gb.ru/lessons/249085)
+* [Запись семинара 8](https://gb.ru/lessons/249158)
+* [Задание 8](https://gb.ru/lessons/249158/homework) 
+
+## Семинар 9.
+* [Лекция 9](https://gb.ru/lessons/249086)
+* [Запись семинара 9](https://gb.ru/lessons/249159)
+* [Задание 9](https://gb.ru/lessons/249159/homework)
+
 ## Новые материалы
 * `dotnet new console` -- команда запуска новой консоли в выбранной папке, создаёт файлы Filename.cs, Foldername.csproj и временные файлы, которые можно отфильтровать при помощи файла .gitignore 
 [Инструкция по .gitignore](https://gbcdn.mrgcdn.ru/uploads/asset/3850834/attachment/f05a318ae735374e643d15e71d42214f.mp4)
